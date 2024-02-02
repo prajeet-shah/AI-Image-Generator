@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import './ImageGenerator.css';
 import defualt_image from '../assest/default_image.svg';
 
+const apiKey = process.env.REACT_APP_API_KEY;
+
 const ImageGenerator = () => {
 
     const [image_url , setImage_url] = useState('/');
@@ -20,7 +22,7 @@ const ImageGenerator = () => {
             headers:{
               "Content-Type": "application/json",
               Authorization:
-              "Bearer apikey",
+              `Bearer ${apiKey}`,
               "User-Agent":"Chrome"
             },
             body:JSON.stringify({
