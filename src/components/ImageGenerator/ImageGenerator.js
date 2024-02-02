@@ -1,16 +1,18 @@
 import React, { useRef, useState } from 'react'
 import './ImageGenerator.css';
 import defualt_image from '../assest/default_image.svg';
+
 const ImageGenerator = () => {
 
     const [image_url , setImage_url] = useState('/');
     let inputRef = useRef(null);
+    const [loading , setLoading] = useState(false);
 
     const ImageGenerator = async ()=>{
         if(inputRef.current.value === ''){
             return 0;
         }
-
+        setLoading(true);
         const response = await fetch(
           "https://api.openai.com/v1/images/generations",
           {
@@ -18,7 +20,7 @@ const ImageGenerator = () => {
             headers:{
               "Content-Type": "application/json",
               Authorization:
-              "Bearer api",
+              "Bearer apikey",
               "User-Agent":"Chrome"
             },
             body:JSON.stringify({
@@ -32,6 +34,7 @@ const ImageGenerator = () => {
         console.log(data)
         let data_array = data.data;
         setImage_url(data_array[0].url);
+        setLoading(false);
     }
 
   return (
@@ -40,6 +43,10 @@ const ImageGenerator = () => {
        <div className='header'>Ai image <span>generator</span></div>
        <div className='img-loading'>
        <div className='image'> <img src={image_url === '/'?defualt_image : image_url}/> </div>
+       <div className='loading'>
+        <div className={loading?"loading-bar-full":'loading-bar'}></div>
+        <div className={loading?'loading-text':'display-none'}>Loading....</div>
+       </div>
         
        </div> 
        <div className='search-box'>

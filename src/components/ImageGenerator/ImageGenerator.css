@@ -3,7 +3,7 @@
     flex-direction: column;
     margin: auto;
     align-items: center;
-    margin-top: 80px;
+    margin-top: 60px;
     margin-bottom: 15px;
     gap: 30px;
 }
@@ -68,4 +68,26 @@
     outline: 0;
     border: 0;
     color: #fff;
+}
+
+.loading-bar{
+    width: 0px;
+    height: 3px;
+    background-color: #DE1B89;
+}
+
+.loading-text{
+    font-size: 15px;
+}
+
+
+.loading-bar-full{
+   width: 400px;
+   height: 3px;
+   background-color: #DE1B89;
+   transition: 20s; 
+}
+
+.display-none{
+    display: none;
 }
